@@ -1,0 +1,10 @@
+{
+  "development": {
+    "apiUrl": "https://urgosxd.herokuapp.com",
+    "contentApiKey": "7c03116e75254de9526a8b4a5f"
+  },
+  "production": {
+    "apiUrl": "https://urgosxd.herokuapp.com",
+    "contentApiKey": "7c03116e75254de9526a8b4a5f"
+  }
+}
