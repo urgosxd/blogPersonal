@@ -4,14 +4,19 @@
  *
  */
 const React = require("react");
-const boots = require("bootstrap/dist/css/bootstrap.min.css");
+const boots = require("./main.css");
 const Tema = require("styled-components").ThemeProvider;
 const Global = require("styled-components").createGlobalStyle`
 html{
     font-size:16px;
     line-height: 1.6em;
     text-rendering: optimizeLegibility;
-    
+    font-family: 'Poppins',san-serif;
+}
+
+body{
+    background: #0E3046 ;
+    min-height: 200vh;
 }
 
 p{

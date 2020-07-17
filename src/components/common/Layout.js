@@ -1,5 +1,5 @@
 /* eslint-disable semi */
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -9,7 +9,7 @@ import Img from "gatsby-image";
 import { Navigation } from ".";
 import config from "../../utils/siteConfig";
 import { LayoutWrapper } from "../../elements";
-import { Navbar } from "react-bootstrap";
+import { Navbar, Fade, FadeProps } from "react-bootstrap";
 
 /**
  * Main layout component
@@ -28,6 +28,13 @@ const DefaultLayout = ({ data, children }) => {
         ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
         : null;
 
+    //Srcoll animation
+    const [fade, setFade] = useState(false);
+
+    window.addEventListener("scroll", () => {
+        window.scrollY > 0 ? setFade(true) : setFade(false);
+    });
+
     return (
         <>
             <Helmet>
@@ -35,23 +42,50 @@ const DefaultLayout = ({ data, children }) => {
             </Helmet>
             <LayoutWrapper>
                 <Navbar
-                    bg="light"
-                    className="justify-content-between px-5 mb-5"
+                    bg="primary"
+                    className={`justify-content-between position-fixed px-5 py-4 w-100 ${
+                        fade ? "sticky bg-white" : ""
+                    }`}
+                    style={{
+                        transition: "0.6s",
+                        fontFamily: "Poppins",
+                        zIndex: "100",
+                    }}
                 >
-                    <div>
-                        <Navbar.Brand href="#home">Brand link</Navbar.Brand>
-                        <Navbar.Brand href="#home">Autores</Navbar.Brand>
-                    </div>
-
                     <Navbar.Brand
-                        href="https://urgosxd.herokuapp.com/ghost/"
-                        className="border redondo px-2"
+                        href="#home"
+                        className="position-relative font-weight-bold  text-uppercase letter"
+                        bsPrefix={`navbar-brand titulo3 ${
+                            fade ? "text-primary" : "text-white"
+                        }`}
                     >
-                        Publicar
+                        C&C
                     </Navbar.Brand>
+                    <div>
+                        <Navbar.Brand
+                            href="#home"
+                            className="letter font-500 mx-4"
+                            bsPrefix={`navbar-brand titulo6 ${
+                                fade ? "text-primary" : "text-white"
+                            }`}
+                        >
+                            Autores
+                        </Navbar.Brand>
+
+                        <Navbar.Brand
+                            href="https://urgosxd.herokuapp.com/ghost"
+                            className="border redondo px-2 letter font-500 mx-4"
+                            bsPrefix={`navbar-brand titulo6 ${
+                                fade ? "text-primary" : "text-white"
+                            }`}
+                        >
+                            Publicar
+                        </Navbar.Brand>
+                    </div>
                 </Navbar>
+
                 <main>{children}</main>
-                <Navbar bg="light" className="justify-content-center">
+                <Navbar bg="light" className="justify-content-center d-none">
                     <Navbar.Brand href="#home">Brand link</Navbar.Brand>
                 </Navbar>
             </LayoutWrapper>
