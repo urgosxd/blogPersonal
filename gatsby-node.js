@@ -182,7 +182,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             module: {
                 rules: [
                     {
-                        test: /bad-module/,
+                        test: /Layout/,
                         use: loaders.null(),
                     },
                 ],
