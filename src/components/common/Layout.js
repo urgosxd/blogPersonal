@@ -31,9 +31,10 @@ const DefaultLayout = ({ data, children }) => {
     //Srcoll animation
     const [fade, setFade] = useState(false);
 
-    window.addEventListener("scroll", () => {
-        window.scrollY > 0 ? setFade(true) : setFade(false);
-    });
+    typeof window !== "undefined" &&
+        window.addEventListener("scroll", () => {
+            window.scrollY > 0 ? setFade(true) : setFade(false);
+        });
 
     return (
         <>
