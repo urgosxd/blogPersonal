@@ -18,7 +18,9 @@ const Post = ({ data, location }) => {
     const post = data.ghostPost;
 
     const JSONSTART = html2.html2json(
-        post.html.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        post.html
+            ? post.html.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            : post.html
     );
 
     const found = JSONSTART.child.filter(
