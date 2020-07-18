@@ -19,7 +19,7 @@ import { Navbar, Fade, FadeProps } from "react-bootstrap";
  * styles, and meta data for each page.
  *
  */
-const DefaultLayout = ({ data, children }) => {
+const DefaultLayout = ({ data, children, isPost }) => {
     const site = data.allGhostSettings.edges[0].node;
     const twitterUrl = site.twitter
         ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}`
@@ -75,20 +75,19 @@ const DefaultLayout = ({ data, children }) => {
 
                         <Navbar.Brand
                             href="https://urgosxd.herokuapp.com/ghost"
-                            className="border redondo px-2 letter font-500 mx-4"
+                            className="border redondo px-2 letter font-500 mx-4 Publicar"
                             bsPrefix={`navbar-brand titulo6 ${
                                 fade ? "text-primary" : "text-white"
-                            }`}
+                            }${" "}${fade ? "bg-white" : "bg-primary"}`}
                         >
                             Publicar
                         </Navbar.Brand>
                     </div>
                 </Navbar>
 
-                <main>{children}</main>
-                <Navbar bg="light" className="justify-content-center d-none">
-                    <Navbar.Brand href="#home">Brand link</Navbar.Brand>
-                </Navbar>
+                <main style={{ minHeight: "200vh", height: "800px" }}>
+                    {children}
+                </main>
             </LayoutWrapper>
         </>
     );

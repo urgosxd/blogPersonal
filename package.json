@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.13.1",
+    "@styled-icons/boxicons-regular": "^10.6.0",
     "@tryghost/helpers": "1.1.27",
     "@tryghost/helpers-gatsby": "1.0.31",
     "bootstrap": "^4.5.0",
@@ -65,6 +66,7 @@
     "react-bootstrap": "^1.2.1",
     "react-dom": "16.13.1",
     "react-helmet": "6.1.0",
+    "react-items-carousel": "^2.8.0",
     "styled-components": "^5.1.1"
   }
 }

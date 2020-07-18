@@ -7,6 +7,10 @@ export const LayoutWrapper = styled.div`
     letter-spacing: 0;
     color: #313b3f;
 
+    .Publicar:hover {
+        filter: invert(100%);
+    }
+
     .from {
         width: 300px;
     }
@@ -48,6 +52,46 @@ export const LayoutWrapper = styled.div`
         height: 500px;
     }
     .MinExcerpt {
-        min-height: 150px;
+        min-height: 120px;
+    }
+    .imgCard {
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        transition: 0.5s;
+    }
+    .Carta:hover div img {
+        opacity: 0;
+    }
+    .Carta:hover .card-body {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        padding: 0 10%;
+        padding-top: 25%;
+    }
+    .Carta:hover .card-body .bodyText {
+        opacity: 1;
+        transition-delay: 0.3s;
+    }
+    .Carta:hover .card-body .cardDate {
+        display: block;
+    }
+    .cardDate {
+        display: none;
+    }
+    .bodyCard {
+        bottom: 5px;
+        left: 10%;
+        width: 80%;
+        height: 60px;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+    .bodyText {
+        opacity: 0;
+        line-height: 1.2em;
+        transition: 0.5s;
     }
 `;

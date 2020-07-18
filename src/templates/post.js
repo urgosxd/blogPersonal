@@ -56,7 +56,7 @@ const Post = ({ data, location }) => {
             <MetaData data={data} location={location} type="article" />
             <Helmet></Helmet>
             <Layout>
-                <Container className="">
+                <Container className="paddingInicial bg-white h-100">
                     <Postpadding>
                         <Row className="post-leyend ">
                             <Col className="">

@@ -11,12 +11,26 @@ const PostCard = ({ post }) => {
     console.log(post);
     return (
         <Link to={url} className="post-card">
-            <Card style={{ width: "23rem" }}>
+            <Card
+                style={{ width: "300px", height: "400px" }}
+                className="shadow-lg bg-dark Carta"
+            >
                 {post.feature_image && (
-                    <Card.Img variant="top" src={post.feature_image} />
+                    <div className="position-absolute w-100 h-100">
+                        <Card.Img
+                            src={post.feature_image}
+                            className="position-absolute img-fluid h-100 imgCard"
+                        />
+                    </div>
                 )}
-                <Card.Body>
-                    <Card.Text>
+                <Card.Body
+                    className="bg-white position-absolute bodyCard"
+                    style={{ fontFamily: "Poppins" }}
+                >
+                    <Card.Text className="cardDate mb-3">
+                        Fecha 25/25/25
+                    </Card.Text>
+                    <Card.Text className="d-none">
                         {post.tags && (
                             <div>
                                 <Tags
@@ -27,8 +41,12 @@ const PostCard = ({ post }) => {
                             </div>
                         )}
                     </Card.Text>
-                    <Card.Title>{post.title}</Card.Title>
-                    <Card.Text>{post.excerpt}</Card.Text>
+                    <Card.Title className=" text-capitalize mb-4">
+                        {post.title}
+                    </Card.Title>
+                    <Card.Text className="text-justify bodyText">
+                        {post.excerpt}
+                    </Card.Text>
                     {post.primary_author.profile_image && (
                         <img
                             src={post.primary_author.profile_image}
