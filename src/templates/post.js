@@ -17,41 +17,57 @@ import html2 from "html2json";
 const Post = ({ data, location }) => {
     const post = data.ghostPost;
 
-    const JSONSTART = html2.html2json(
-        post.html
-            ? post.html.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-            : post.html
-    );
+    const Convertidor = (pox, fond) => {
+        if (pox) {
+            console.log(pox);
+            const JSONSTART = html2.html2json(
+                pox.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            );
 
-    const found = JSONSTART.child.filter(
-        (element) =>
-            element.tag === "h1" ||
-            element.tag === "h2" ||
-            element.tag === "h3" ||
-            element.tag === "h4" ||
-            element.tag === "h5" ||
-            element.tag === "h6"
-    );
+            const found = JSONSTART.child.filter(
+                (element) =>
+                    element.tag === "h1" ||
+                    element.tag === "h2" ||
+                    element.tag === "h3" ||
+                    element.tag === "h4" ||
+                    element.tag === "h5" ||
+                    element.tag === "h6"
+            );
 
-    console.log(JSONSTART);
-    JSONSTART.child.map((ele) =>
-        found.includes(ele)
-            ? Object.defineProperties(ele, {
-                  attr: {
-                      value: {
-                          id:
-                              typeof ele.child[0] === "object"
-                                  ? ele.child[0].child[0].text.replace(/ /g, "")
-                                  : ele.child[0].text.replace(/ /g, ""),
-                      },
-                      writable: true,
-                  },
-              })
-            : null
-    );
+            JSONSTART.child.map((ele) =>
+                found.includes(ele)
+                    ? Object.defineProperties(ele, {
+                          attr: {
+                              value: {
+                                  id:
+                                      typeof ele.child[0] === "object"
+                                          ? ele.child[0].child[0].text.replace(
+                                                / /g,
+                                                ""
+                                            )
+                                          : ele.child[0].text.replace(/ /g, ""),
+                              },
+                              writable: true,
+                          },
+                      })
+                    : null
+            );
 
-    const HTMLEND = html2.json2html(JSONSTART);
-    console.log(HTMLEND);
+            const HTMLEND = html2.json2html(JSONSTART);
+
+            if (fond) {
+                if (pox) {
+                    return found;
+                } else {
+                    null;
+                }
+            } else {
+                return HTMLEND;
+            }
+        }
+    };
+
+    Convertidor();
 
     return (
         <>
@@ -66,7 +82,9 @@ const Post = ({ data, location }) => {
                                     {post.title}
                                 </h1>
                                 <p>{post.excerpt}</p>
-                                <Leyenda leyenda={found} />
+                                <Leyenda
+                                    leyenda={Convertidor(post.html, true)}
+                                />
                             </Col>
                         </Row>
                     </Postpadding>
@@ -78,7 +96,7 @@ const Post = ({ data, location }) => {
                                     <div
                                         className="d-flex flex-column align-items-center"
                                         dangerouslySetInnerHTML={{
-                                            __html: HTMLEND,
+                                            __html: Convertidor(post.html),
                                         }}
                                     />
                                 </section>
